@@ -1,0 +1,172 @@
+
+version: 2
+
+models:
+  - name: stg_users
+    description: "Dbt model that contains users personal details."
+    columns:
+      - name: id
+        description: "The primary key for this table, refer to the ID of the user."
+        tests:
+          - unique
+          - not_null
+      - name: user_id
+        description: "User unique identifier."
+      - name: first_name
+        description: "User first name."
+      - name: last_name
+        description: "User last name."
+      - name: email
+        description: "User email."
+      - name: phone_number
+        description: "User phone number."
+      - name: created_at_utc
+        description: "When the user was created in UTC (eg. 2018-01-01 12:00:00)." 
+      - name: updated_at_utc
+        description: "When the user updated the details in UTC (eg. 2018-01-01 12:00:00)." 
+      - name: address_id
+        description: "Address key unique identifier."
+        tests:
+        - unique
+        - not_null
+
+  - name: stg_addresses
+    description: "Dbt model that contains users' detail address."
+    columns:
+      - name: address_id
+        description: "This is a unique identifier for the adress."
+        tests: 
+          - unique
+          - not_null
+      - name: address
+        description: "User address."
+      - name: zipcode
+        description: "User zipcode."
+      - name: state   
+        description: "User's state."
+      - name: country
+        description: "User's country."
+
+  - name: stg_orders 
+    description: "Dbt model that contains users' orders details."
+    columns:
+      - name: order_id
+        description: "This is a unique identifier for the order."
+        tests:
+          - unique
+          - not_null
+      - name: order_guid
+        description: "Order key globaly unique identifier."  
+      - name: promo_guid
+        description: "Promo key globaly unique identifier."
+      - name: user_guid
+        description: "User key globaly unique identifier."
+      - name: address_guid
+        description: "Address key globaly unique identifier."
+      - name: order_created_at_utc
+        description: "When the user placed the order in UTC (eg. 2018-01-01 12:00:00)." 
+      - name: order_cost
+        description: "Order costs."
+        tests:
+          - positive_values
+      - name: shipping_cost
+        description: "Shipping costs."
+        tests:
+          - positive_values
+      - name: order_total
+        description: "Total order."
+        tests:
+          - positive_values
+      - name: tracking_guid
+        description: "Tracking key globaly unique identifier."
+      - name: shipping_service
+        description: "Shipping service."
+      - name: estimated_delivery_at_utc
+        description: "Estimated delivery date in UTC (eg. 2018-01-01 12:00:00)." 
+      - name: delivered_at_utc
+        description: "UTC datetime of the estimated delivered."
+      - name: status
+        description: "Order status."
+
+  - name: stg_order_items
+    description: "Dbt model that contains users' orders items."
+    columns:
+      - name: order_id
+        description: "This is a unique identifier for the order."
+        tests:
+          - unique 
+          - not_null
+      - name: order_guid
+        description: "Order key globaly unique identifier."
+      - name: product_guid
+        description: "Product key  globaly unique identifier."
+      - name: quantity
+        description: "Quantity of the products ordered."
+        tests:
+          - positive_values
+    
+  - name: stg_products
+    description: "Dbt model that contains product details."
+    columns: 
+      - name: product_id   
+        description: "This is a unique identifier for the product."
+        tests:
+          - unique
+          - not_null
+      - name: product_guid
+        description: "Product key  globaly unique identifier."
+      - name: name
+        description: "Name of the product."
+      - name: price   
+        description: "Price of the product."
+        tests:
+          - positive_values
+      - name: quantity
+        description: "Quantity of the product."
+        tests:
+          - positive_values
+    
+  - name: stg_promos
+    description: "Dbt model that contains promos details."
+    columns:
+      - name: promo_id
+        description: "This is a unique identifier of the promotion."
+        tests:
+          - unique
+          - not_null
+      - name: promo_guid
+        description: "Promo key globaly unique identifier."
+      - name: discount
+        description: "Discount applied to the product."
+        tests: 
+          - not_null
+          - positive_values
+      - name: status
+        description: "Status of the promotion, if it's active or inactive."
+        tests: 
+        - not_null
+
+  - name: stg_events
+    description: "Dbt model that contains promos details."
+    columns: 
+      - name: event_id
+        tests:
+        - unique
+        - not_null
+        description: "This is a unique identifier for the event."
+      - name: event_guid
+        description: "Events key globaly unique identifier."
+      - name: session_guid
+        description: "Session key globaly unique identifier."
+      - name: user_guid
+        description: "User key globaly unique identifier."
+      - name: event_type
+        description: "Type of event."
+      - name: page_url
+        description: "Page url."
+      - name: events_created_at_utc
+        description: "When the event occurred in UTC (eg. 2018-01-01 12:00:00)"
+        
+    
+
+      
