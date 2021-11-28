@@ -1,0 +1,14 @@
+version: 2
+
+models:
+  - name: fact_user_orders
+    columns:
+      - name: user_guid
+        tests:
+          - unique:
+              severity: warn
+          - not_null
+      - name: total_orders_count
+      - name: total_value_spent
+      - name: first_purchase_date
+      - name: is_repeated_customer

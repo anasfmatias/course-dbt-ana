@@ -1,0 +1,83 @@
+version: 2
+
+models:
+  - name: int_users
+    columns:
+      - name: user_guid
+        tests:
+          - unique:
+              severity: warn
+          - not_null
+      - name: first_name
+      - name: last_name
+      - name: email
+      - name: phone_number
+      - name: user_created_at_utc
+      - name: user_updated_at_utc
+      - name: customer_tenure
+      - name: address_guid
+      - name: zipcode
+      - name: address
+      - name: country
+
+  - name: dim_products
+    columns:
+      - name: product_id
+        tests:
+          - unique:
+              severity: warn
+          - not_null
+      - name: product_guid
+      - name: user_id
+      - name: product_name
+      - name: product_price  
+      - name: product_stock_count
+
+  - name: dim_users
+    columns:
+      - name: user_guid
+        tests:
+          - unique:
+              severity: warn
+          - not_null
+      - name: first_name
+      - name: last_name
+      - name: email
+      - name: phone_number
+      - name: address_guid
+      - name: zipcode
+      - name: address
+      - name: state
+      - name: country
+      - name: user_created_at_utc
+      - name: user_updated_at_utc
+      - name: customer_tenure
+      - name: total_orders_count
+      - name: total_value_spent
+      - name: time_first_purchase
+
+  - name: fact_orders
+    columns: 
+      - name: order_id
+        tests:
+          - unique:
+              severity: warn
+          - not_null
+      - name: order_guid
+      - name: promo_guid
+      - name: user_guid
+      - name: address_guid
+      - name: order_created_at_utc
+      - name: order_cost
+      - name: shipping_cost
+      - name: order_total
+      - name: tracking_guid
+      - name: shipping_service
+      - name: estimated_delivery_at_utc
+      - name: delivered_at_utc
+      - name: order_status
+      - name: product_guid
+      - name: unique_product_count
+      - name: discount
+      - name: promo_status
+

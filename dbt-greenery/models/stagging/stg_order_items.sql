@@ -13,7 +13,7 @@ with order_items_source as (
         order_id
         , order_id          as order_guid
         , product_id        as product_guid           
-        , quantity
+        , quantity          
     from order_items_source
 )
 select * from renamed_casted
