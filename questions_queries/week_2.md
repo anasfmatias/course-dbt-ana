@@ -44,7 +44,7 @@ Marts the other main models directory stores intermediate and dim/facts models. 
 In this tables we can have intermediate models that started with int_, dim_ models or fact_ models. Intermediate tables are used to apply business logic and aggregation and contain the granularity in each unit's folder. In this case I created one intermediate model 'int_user' because it made sense to have all the user personal data together. Fact_ and Dim_ tables are usually exposed to the end users. Some of them have been applied aggregation and therefore have lost some granularity of information Their purpose is to answer some business questions.
 
 ### Dag image
-<p align="center"><img src="images/dag.png" width="800"></p>
+<p align="center"><img src="dag.png" width="800"></p>
 
 
 ## What assumptions are your making about each model? (i.e. why are you adding each test?)
