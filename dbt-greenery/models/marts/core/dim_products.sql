@@ -7,9 +7,7 @@
 
 
 SELECT 
-  product_id
-  , product_guid
+  product_guid
   , name             as product_name    
-  , price            as product_price   
-  , quantity         as product_stock_count             
+  , quantity         as product_in_stock            
 FROM {{ ref('stg_products')}}

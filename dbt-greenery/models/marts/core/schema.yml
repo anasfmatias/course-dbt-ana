@@ -1,7 +1,7 @@
 version: 2
 
 models:
-  - name: int_users
+  - name: dim_users
     columns:
       - name: user_guid
         tests:
@@ -22,39 +22,14 @@ models:
 
   - name: dim_products
     columns:
-      - name: product_id
+      - name: product_guid
         tests:
           - unique:
               severity: warn
           - not_null
       - name: product_guid
-      - name: user_id
       - name: product_name
-      - name: product_price  
       - name: product_stock_count
-
-  - name: dim_users
-    columns:
-      - name: user_guid
-        tests:
-          - unique:
-              severity: warn
-          - not_null
-      - name: first_name
-      - name: last_name
-      - name: email
-      - name: phone_number
-      - name: address_guid
-      - name: zipcode
-      - name: address
-      - name: state
-      - name: country
-      - name: user_created_at_utc
-      - name: user_updated_at_utc
-      - name: customer_tenure
-      - name: total_orders_count
-      - name: total_value_spent
-      - name: time_first_purchase
 
   - name: fact_orders
     columns: 

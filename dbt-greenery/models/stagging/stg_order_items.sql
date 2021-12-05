@@ -15,5 +15,6 @@ with order_items_source as (
         , product_id        as product_guid           
         , quantity          
     from order_items_source
+    where order_id is not null
 )
 select * from renamed_casted

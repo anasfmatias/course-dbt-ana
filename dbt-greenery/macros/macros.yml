@@ -1,0 +1,16 @@
+version: 2
+
+macros:
+  - name: not_null
+    description: A macro to insert a 'is not null' statement in the where clause
+    arguments:
+      - name: field_name
+        type: string
+        description: The name of the column you want to insert the 'is not null' clause
+        
+  - name: grant_permissions
+    description: A macro to grant usage and select permissions over a model to the given role
+    arguments:
+      - name: role_name
+        type: string
+        description: The role name to give permissions to

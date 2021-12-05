@@ -21,19 +21,22 @@ models:
       - name: phone_number
         description: "User phone number."
       - name: created_at_utc
+        tests:
+          - in_the_past
         description: "When the user was created in UTC (eg. 2018-01-01 12:00:00)." 
       - name: updated_at_utc
+        tests:
+          - in_the_past
         description: "When the user updated the details in UTC (eg. 2018-01-01 12:00:00)." 
-      - name: address_id
+      - name: address_guid
         description: "Address key unique identifier."
         tests:
-        - unique
         - not_null
 
   - name: stg_addresses
     description: "Dbt model that contains users' detail address."
     columns:
-      - name: address_id
+      - name: address_guid
         description: "This is a unique identifier for the adress."
         tests: 
           - unique
@@ -53,7 +56,6 @@ models:
       - name: order_id
         description: "This is a unique identifier for the order."
         tests:
-          - unique
           - not_null
       - name: order_guid
         description: "Order key globaly unique identifier."  
@@ -64,6 +66,8 @@ models:
       - name: address_guid
         description: "Address key globaly unique identifier."
       - name: order_created_at_utc
+        tests:
+          - in_the_past
         description: "When the user placed the order in UTC (eg. 2018-01-01 12:00:00)." 
       - name: order_cost
         description: "Order costs."
@@ -75,8 +79,6 @@ models:
           - positive_values
       - name: order_total
         description: "Total order."
-        tests:
-          - positive_values
       - name: tracking_guid
         description: "Tracking key globaly unique identifier."
       - name: shipping_service
@@ -84,6 +86,8 @@ models:
       - name: estimated_delivery_at_utc
         description: "Estimated delivery date in UTC (eg. 2018-01-01 12:00:00)." 
       - name: delivered_at_utc
+        tests:
+          - in_the_past
         description: "UTC datetime of the estimated delivered."
       - name: status
         description: "Order status."
@@ -94,7 +98,6 @@ models:
       - name: order_id
         description: "This is a unique identifier for the order."
         tests:
-          - unique 
           - not_null
       - name: order_guid
         description: "Order key globaly unique identifier."
@@ -144,7 +147,7 @@ models:
       - name: status
         description: "Status of the promotion, if it's active or inactive."
         tests: 
-        - not_null
+          - not_null
 
   - name: stg_events
     description: "Dbt model that contains promos details."
@@ -166,6 +169,8 @@ models:
         description: "Page url."
       - name: events_created_at_utc
         description: "When the event occurred in UTC (eg. 2018-01-01 12:00:00)"
+        tests:
+          - in_the_past
         
     
 
